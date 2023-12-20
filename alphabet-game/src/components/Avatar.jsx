@@ -1,3 +1,4 @@
+//Avatar.jsx
 import React from "react"
 
 const Avatar = () => {

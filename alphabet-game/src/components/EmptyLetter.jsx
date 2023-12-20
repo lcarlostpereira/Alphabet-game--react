@@ -1,3 +1,4 @@
+//EmptyLetter.jsx
 import React from "react"
 
 const EmptyLetter = ({ letter }) => {
