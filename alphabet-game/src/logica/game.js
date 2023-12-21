@@ -7,23 +7,22 @@ let game = {
   ],
 
   indexWord: null,
+  picture: null,
   array: [],
-  indexLetter: [],
+  indexLetter: 0,
   arrayEmbaralhado: [],
   qntCaracteres: null,
   index: 0,
 
   sortWord: function () {
     this.indexWord = Math.floor(Math.random() * this.wordList.length)
-    // console.log(this.indexWord)
+
     this.array = this.wordList[this.indexWord].name.split("")
-    // console.log(this.array)
-    // this.indexLetter = []
-    // this.arrayEmbaralhado = []
+
     this.qntCaracteres = 15 - this.array.length
-    // this.index = 0
+
     this.addRandomCharacter()
-    // console.log("sortWord", this.array)
+    this.setPicture()
   },
 
   addRandomCharacter: function () {
@@ -62,10 +61,31 @@ let game = {
     return newArray
   },
 
+  setPicture: function () {
+    this.picture = this.wordList[this.indexWord].photo // Correção aqui
+  },
+
   createLetters: function () {
     this.sortWord()
 
     return this.arrayEmbaralhado
+  },
+
+  checkCorrectLetter: function (clickedLetter) {
+    const correctLetter = this.array[this.indexLetter]
+
+    if (clickedLetter === correctLetter) {
+      this.indexLetter++
+
+      if (this.indexLetter === this.array.length) {
+        this.indexLetter = 0
+        return true
+      }
+
+      return true
+    }
+
+    return false
   },
 }
 

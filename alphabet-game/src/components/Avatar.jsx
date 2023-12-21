@@ -1,11 +1,13 @@
 //Avatar.jsx
 import React from "react"
 
-const Avatar = () => {
+const Avatar = ({ picture }) => {
+  console.log(picture)
   return (
     <img
       className="w-48 h-48 overflow-hidden rounded-full my-6"
-      src="../assets/images/Lucca.jpg"
+      // src=
+      src={picture}
       alt="Lucca"
     />
   )

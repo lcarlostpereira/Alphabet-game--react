@@ -8,21 +8,35 @@ import game from "./logica/game"
 
 function App() {
   const [letters, setLetters] = useState([])
+  const [picture, setPicture] = useState([])
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
 
   useEffect(() => {
     setLetters(game.createLetters())
-    console.log("UseEffect", letters)
-    console.log("passei aqui")
+    // setWord(game.array)
+    setPicture(game.picture)
   }, [])
-  console.log("App.jsx", letters)
+
+  const handleLetterClick = (clickedLetter) => {
+    if (game.checkCorrectLetter(clickedLetter)) {
+      setCurrentLetterIndex(currentLetterIndex + 1)
+    }
+  }
+
   return (
     <>
       <div className="flex flex-col items-center justify-center ">
-        <Avatar />
-        <WordBoard />
-        <LettersBoard letters={letters} />
-        {console.log("Abaixo de lettersboard", letters)}
-        {console.log("Abaixo de lettersboard", game.arrayEmbaralhado)}
+        <Avatar picture={picture} />
+        {/* <WordBoard word={game.array.slice(0, currentLetterIndex)} /> */}
+        <WordBoard
+          word={game.array
+            .slice(0, game.array.length)
+            .map((_, index) =>
+              index < currentLetterIndex ? game.array[index] : " "
+            )}
+        />
+
+        <LettersBoard letters={letters} onLetterClick={handleLetterClick} />
       </div>
     </>
   )
